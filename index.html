@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My AI Agent Hackathon</title>
+</head>
+<body>
+    <h1>Welcome to My Conversational AI Agent</h1>
+    <p>Chat with the agent below! Say "send email" to trigger an action via n8n.</p>
+    
+    <!-- ElevenLabs Widget Embed -->
+    <elevenlabs-convai agent-id="agent_5401kc5r9pmsfygvw1awv7r0xm9f"></elevenlabs-convai>
+    <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
+    
+    <!-- Optional: Add a button to trigger n8n manually (if widget doesn't handle it) -->
+    <button onclick="triggerN8n()">Send Test Email via n8n</button>
+    <script>
+        function triggerN8n() {
+            fetch('https://miguel-amev.app.n8n.cloud/webhook-test/858be022-2065-415f-9407-4b1eacfce74e', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: 'send_email', message: 'Test from widget' })
+            }).then(response => console.log('n8n triggered:', response.status));
+        }
+    </script>
+</body>
+</html>
